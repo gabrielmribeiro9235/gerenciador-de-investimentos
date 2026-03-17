@@ -64,12 +64,16 @@ function removerInvestimento(indice){
     carregarInvestimentosNaTela();
 };
 
-function adicionarValor(indice,valor){
-    valor = Number(valor);
-    
-    if(isNaN(valor) || valor <= 0){
+function adicionarValor(indice){
+    let valor = prompt(`Digite o valor que quer adicionar ao investimento \"${tipos[indice].nome}\":`);
+
+    if(!valor) return;
+
+    if(isNaN(valor) || Number(valor) <= 0){
         alert("Digite um valor válido");
         return;
+    } else {
+        valor = Number(valor);
     }
     
     if(indice < 0 || indice >= tipos.length){
@@ -82,8 +86,17 @@ function adicionarValor(indice,valor){
     carregarInvestimentosNaTela();
 };
 
-function retirarValor(indice,valor){
-    valor = Number(valor);
+function retirarValor(indice){
+    let valor = prompt(`Digite o valor que quer retirar do investimento \"${tipos[indice].nome}\":`);
+
+    if(!valor) return;
+
+    if(isNaN(valor) || Number(valor) <= 0){
+        alert("Digite um valor válido");
+        return;
+    } else {
+        valor = Number(valor);
+    }
     
     if(indice < 0 || indice >= tipos.length){
         alert("Investimento Inválido");
