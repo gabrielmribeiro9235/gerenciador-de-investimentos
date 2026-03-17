@@ -26,7 +26,7 @@ function somarInvestimentos(){
     salvarLocalStorage();
 };
 
-function adicionaInvestimento(nome,valor){
+function adicionarInvestimento(nome,valor){
     valor = Number(valor);
     
     if(nome.trim() === ""){
@@ -116,7 +116,7 @@ function configurarEventos(){
         let nome = prompt("Nome do investimento:");
         let valor = prompt("Valor do investimento");
         
-        adicionaInvestimento(nome, valor);
+        adicionarInvestimento(nome, valor);
     });
     
     botaoReais.addEventListener("click", function(){
