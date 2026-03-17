@@ -134,11 +134,13 @@ main {
 }
 
 .card-tipos > div > h2 {
-    font-size: 20px;
+    font-size: 18px;
+    text-align: center;
 }
 
 .card-tipos > div > p {
-    font-size: 14px;
+    font-size: 13px;
+    text-align: center;
 }
 
 
