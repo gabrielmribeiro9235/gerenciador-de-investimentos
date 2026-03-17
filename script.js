@@ -30,6 +30,7 @@ function somarInvestimentos(){
     });
     
     salvarLocalStorage();
+    alteraTotal();
 };
 
 function adicionarInvestimento(nome,valor){
@@ -133,6 +134,13 @@ function configurarEventos(){
         console.log("Modo dólar");
     });
 };
+
+
+function alteraTotal() {
+    const p = document.querySelector("p");
+    p.innerHTML = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+};
+
 
 document.addEventListener("DOMContentLoaded", function(){
     lerLocalStore();
