@@ -2,7 +2,7 @@ let total = 0;
 let tipos = [];
 
 
-function LerLocalStore(){
+function lerLocalStore(){
     tipos = JSON.parse(localStorage.getItem("tipos"));
     
     if(tipos == null){
@@ -10,7 +10,7 @@ function LerLocalStore(){
     }
 };
 
-function SalvarLocalStorage(){
+function salvarLocalStorage(){
     localStorage.setItem("tipos",JSON.stringify(tipos));
 };
 
@@ -35,15 +35,15 @@ function adicionaInvestimento(nome,valor){
     }
     
     tipos.push({nome:nome, valor:valor});
-    Somarinvestimentos();
+    somarInvestimentos();
 };
 
-function RemoverInvestimento(indice){
+function removerInvestimento(indice){
     tipos.splice(indice, 1);
-    Somarinvestimentos();
+    somarInvestimentos();
 };   
 
-function Somarinvestimentos(){
+function somarInvestimentos(){
     total = 0;
     
     tipos.forEach(function(item){
@@ -52,10 +52,10 @@ function Somarinvestimentos(){
         console.log(total);
     })
     
-    SalvarLocalStorage();
+    salvarLocalStorage();
 };
 
-function AdicionarValor(indice,valor){
+function adicionarValor(indice,valor){
     valor = Number(valor);
     
     if(isNaN(valor) || valor <= 0){
@@ -69,10 +69,10 @@ function AdicionarValor(indice,valor){
     }
     
     tipos[indice].valor += valor;
-    Somarinvestimentos();
+    somarInvestimentos();
 };
 
-function RetirarValor(indice,valor){
+function retirarValor(indice,valor){
     valor = Number(valor);
     
     if(indice < 0 || indice >= tipos.length){
@@ -86,7 +86,7 @@ function RetirarValor(indice,valor){
     }
     
     tipos[indice].valor -= valor;
-    Somarinvestimentos();
+    somarInvestimentos();
 };
 
 async function getApi(){
@@ -107,7 +107,7 @@ async function getApi(){
     }
 };
 
-function ConfigurarEventos(){
+function configurarEventos(){
     let botaoNovo = document.querySelector(".botao-novo-tipo");
     let botaoReais = document.querySelector(".botao-reais");
     let botaoDolar = document.querySelector(".botao-dolares");
@@ -129,8 +129,8 @@ function ConfigurarEventos(){
 };
 
 document.addEventListener("DOMContentLoaded", function(){
-    LerLocalStore();
-    Somarinvestimentos();
-    ConfigurarEventos();
+    lerLocalStore();
+    somarInvestimentos();
+    configurarEventos();
     getApi();
 });
