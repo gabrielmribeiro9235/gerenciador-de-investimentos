@@ -27,7 +27,7 @@ function somarInvestimentos(){
         total += item.valor;
         console.log(item.valor);
         console.log(total);
-    })
+    });
     
     salvarLocalStorage();
 };
