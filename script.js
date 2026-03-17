@@ -1,5 +1,5 @@
-let total = 0;
-let tipos = [];
+let total;
+let tipos;
 
 
 function lerLocalStore(){
