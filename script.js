@@ -12,6 +12,18 @@ function lerLocalStore(){
 
 function salvarLocalStorage(){
     localStorage.setItem("tipos",JSON.stringify(tipos));
+};   
+
+function somarInvestimentos(){
+    total = 0;
+    
+    tipos.forEach(function(item){
+        total += item.valor;
+        console.log(item.valor);
+        console.log(total);
+    })
+    
+    salvarLocalStorage();
 };
 
 function adicionaInvestimento(nome,valor){
@@ -41,18 +53,6 @@ function adicionaInvestimento(nome,valor){
 function removerInvestimento(indice){
     tipos.splice(indice, 1);
     somarInvestimentos();
-};   
-
-function somarInvestimentos(){
-    total = 0;
-    
-    tipos.forEach(function(item){
-        total += item.valor;
-        console.log(item.valor);
-        console.log(total);
-    })
-    
-    salvarLocalStorage();
 };
 
 function adicionarValor(indice,valor){
