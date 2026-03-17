@@ -97,42 +97,17 @@ function SalvarLocalStorage(){
     localStorage.setItem("tipos",JSON.stringify(tipos));
 };
 
-function AdicionarValor(indice,valor){
-    valor = Number(valor);
-
-    if(isNaN(valor) || valor <= 0){
-        alert("Digite um valor válido");
-        return;
-    }
-  
-    if(indice < 0 || indice >= tipos.length){
-        alert("Investimento Inválido");
-        return;
-    }
-
-    tipos[indice].valor += valor;
-    Somarinvestimentos();
-}
-
-function LerLocalStore(){
-    tipos = JSON.parse(localStorage.getItem("tipos"));
-
-    if(tipos == null){
-        tipos = [];
-    }
-};
-
 async function getApi(){
     try {
         let response = await fetch("https://api.euroratesapi.dev/api/all-rates?currency=USD");
-
+        
         if(!response.ok){
             throw new Error("Erro ao buscar dados da API");
         }
-
+        
         let data = await response.json();
         let cotacao = data.rates.BRL;
-
+        
         console.log("Cotação USD para BRL:", cotacao);
         return cotacao;
     } catch(error){
