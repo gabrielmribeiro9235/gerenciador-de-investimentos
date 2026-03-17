@@ -4,14 +4,20 @@ let tipos = [];
 
 function lerLocalStore(){
     tipos = JSON.parse(localStorage.getItem("tipos"));
-    
+    total = JSON.parse(localStorage.getItem("total"));
+
     if(tipos == null){
         tipos = [];
+    }
+
+    if(total == null) {
+        total = 0;
     }
 };
 
 function salvarLocalStorage(){
     localStorage.setItem("tipos",JSON.stringify(tipos));
+    localStorage.setItem("total", JSON.stringify(total));
 };   
 
 function somarInvestimentos(){
