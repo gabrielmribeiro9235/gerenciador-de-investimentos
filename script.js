@@ -1,5 +1,7 @@
 let total;
 let tipos;
+let valorDolar;
+let isDolar = false;
 
 
 function lerLocalStore(){
@@ -35,11 +37,6 @@ function somarInvestimentos(){
 
 function adicionarInvestimento(nome,valor){
     valor = Number(valor);
-    
-    if(nome.trim() === ""){
-        alert("Digite um nome válido");
-        return;
-    }
     
     if(isNaN(valor) || valor <= 0){
         alert("Digite um valor númerico válido");
@@ -125,7 +122,7 @@ async function getApi(){
         let cotacao = data.rates.BRL;
         
         console.log("Cotação USD para BRL:", cotacao);
-        return cotacao;
+        valorDolar = cotacao;
     } catch(error){
         console.log("Erro ao acessar API:", error);
     }
@@ -138,24 +135,45 @@ function configurarEventos(){
     
     botaoNovo.addEventListener("click", function(){
         let nome = prompt("Nome do investimento:");
-        let valor = prompt("Valor do investimento");
+        if(nome === null) return;
+        if(nome.trim() !== "") {
+            let valor = prompt("Valor do investimento");
+            adicionarInvestimento(nome, valor);
+        } else {
+            alert("Digite um nome válido");
+        }
         
-        adicionarInvestimento(nome, valor);
     });
     
     botaoReais.addEventListener("click", function(){
-        console.log("Modo reais");
+        if(isDolar === true) {
+            isDolar = false;
+            botaoReais.classList.toggle("moeda-ativa");
+            botaoDolar.classList.toggle("moeda-ativa");
+            alteraTotal();
+            carregarInvestimentosNaTela();
+        }
     });
     
     botaoDolar.addEventListener("click", function(){
-        console.log("Modo dólar");
+        if(isDolar === false && (typeof valorDolar === "number")) {
+            isDolar = true;
+            botaoReais.classList.toggle("moeda-ativa");
+            botaoDolar.classList.toggle("moeda-ativa");
+            alteraTotal();
+            carregarInvestimentosNaTela();
+        }
     });
 };
 
 
 function alteraTotal() {
     const p = document.querySelector("p");
-    p.innerHTML = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if(isDolar) {
+        p.innerHTML = `US$ ${(total / valorDolar).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    } else {
+        p.innerHTML = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
 };
 
 function carregarInvestimentosNaTela() {
@@ -164,7 +182,6 @@ function carregarInvestimentosNaTela() {
     if(tipos.length === 0) {
         const h1 = document.createElement("h1");
         h1.classList.add("adicione-primeiro");
-        h1.style.fontSize = "40px";
         h1.textContent = "Adicione o primeiro investimento";
         secaoTipos.append(h1);
     } else {
@@ -191,7 +208,11 @@ function carregarInvestimentosNaTela() {
             botoesAdicionarRetirar.append(botaoAdicionarValor);
             botoesAdicionarRetirar.append(botaoRetirarValor);
             h2.textContent = tipo.nome;
-            p.textContent = `R$ ${tipo.valor.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            if(isDolar) {
+                p.textContent = `US$ ${(tipo.valor / valorDolar).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            } else {
+                p.textContent = `R$ ${tipo.valor.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            }
             div.append(h2);
             div.append(p);
             botaoExcluir.innerHTML = `
@@ -210,10 +231,10 @@ function carregarInvestimentosNaTela() {
 };
 
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", async function(){
     lerLocalStore();
     somarInvestimentos();
     configurarEventos();
-    getApi();
     carregarInvestimentosNaTela();
+    await getApi();
 });

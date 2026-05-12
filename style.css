@@ -7,11 +7,13 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    min-height: 100vh;
+    min-height: 80vh;
     background-color: #000000;
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    zoom: 1.25;
 }
 
 header {
@@ -22,10 +24,11 @@ header {
     background-color: #121212;
     border-bottom: 2px solid gray;
     border-radius: 0 0 10px 10px;
+    position: relative;
 }
 
 header > nav {
-    position: fixed;
+    position: absolute;
     top: 25px;
     right: 40px;
     display: flex;
@@ -84,13 +87,19 @@ main {
 }
 
 .tipos {
-    max-width: 714.4px;
-    margin-top: 30px;
     display: flex;
-    gap: 30px 50px;
-    justify-content: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 50px;
+    justify-content: center;
+    max-width: 850px;
+    margin-top: 30px;
+    gap: 30px 50px;
+    margin-bottom: 100px;
+}
+
+.adicione-primeiro {
+    width: 100vw;
+    text-align: center;
+    font-size: 40px;
 }
 
 .card-tipos {
