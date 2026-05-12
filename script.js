@@ -38,11 +38,6 @@ function somarInvestimentos(){
 function adicionarInvestimento(nome,valor){
     valor = Number(valor);
     
-    if(nome.trim() === ""){
-        alert("Digite um nome válido");
-        return;
-    }
-    
     if(isNaN(valor) || valor <= 0){
         alert("Digite um valor númerico válido");
         return;
@@ -140,9 +135,14 @@ function configurarEventos(){
     
     botaoNovo.addEventListener("click", function(){
         let nome = prompt("Nome do investimento:");
-        let valor = prompt("Valor do investimento");
+        if(nome === null) return;
+        if(nome.trim() !== "") {
+            let valor = prompt("Valor do investimento");
+            adicionarInvestimento(nome, valor);
+        } else {
+            alert("Digite um nome válido");
+        }
         
-        adicionarInvestimento(nome, valor);
     });
     
     botaoReais.addEventListener("click", function(){
