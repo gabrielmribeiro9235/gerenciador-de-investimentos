@@ -182,7 +182,6 @@ function carregarInvestimentosNaTela() {
     if(tipos.length === 0) {
         const h1 = document.createElement("h1");
         h1.classList.add("adicione-primeiro");
-        h1.style.fontSize = "40px";
         h1.textContent = "Adicione o primeiro investimento";
         secaoTipos.append(h1);
     } else {
