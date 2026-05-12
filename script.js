@@ -231,10 +231,10 @@ function carregarInvestimentosNaTela() {
 };
 
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", async function(){
     lerLocalStore();
     somarInvestimentos();
     configurarEventos();
-    getApi();
     carregarInvestimentosNaTela();
+    await getApi();
 });
