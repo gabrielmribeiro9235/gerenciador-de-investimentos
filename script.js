@@ -1,5 +1,7 @@
 let total;
 let tipos;
+let valorDolar;
+let isDolar = false;
 
 
 function lerLocalStore(){
@@ -125,7 +127,7 @@ async function getApi(){
         let cotacao = data.rates.BRL;
         
         console.log("Cotação USD para BRL:", cotacao);
-        return cotacao;
+        valorDolar = cotacao;
     } catch(error){
         console.log("Erro ao acessar API:", error);
     }
@@ -144,18 +146,34 @@ function configurarEventos(){
     });
     
     botaoReais.addEventListener("click", function(){
-        console.log("Modo reais");
+        if(isDolar === true) {
+            isDolar = false;
+            botaoReais.classList.toggle("moeda-ativa");
+            botaoDolar.classList.toggle("moeda-ativa");
+            alteraTotal();
+            carregarInvestimentosNaTela();
+        }
     });
     
     botaoDolar.addEventListener("click", function(){
-        console.log("Modo dólar");
+        if(isDolar === false && (typeof valorDolar === "number")) {
+            isDolar = true;
+            botaoReais.classList.toggle("moeda-ativa");
+            botaoDolar.classList.toggle("moeda-ativa");
+            alteraTotal();
+            carregarInvestimentosNaTela();
+        }
     });
 };
 
 
 function alteraTotal() {
     const p = document.querySelector("p");
-    p.innerHTML = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if(isDolar) {
+        p.innerHTML = `US$ ${(total / valorDolar).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    } else {
+        p.innerHTML = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
 };
 
 function carregarInvestimentosNaTela() {
@@ -191,7 +209,11 @@ function carregarInvestimentosNaTela() {
             botoesAdicionarRetirar.append(botaoAdicionarValor);
             botoesAdicionarRetirar.append(botaoRetirarValor);
             h2.textContent = tipo.nome;
-            p.textContent = `R$ ${tipo.valor.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            if(isDolar) {
+                p.textContent = `US$ ${(tipo.valor / valorDolar).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            } else {
+                p.textContent = `R$ ${tipo.valor.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            }
             div.append(h2);
             div.append(p);
             botaoExcluir.innerHTML = `
