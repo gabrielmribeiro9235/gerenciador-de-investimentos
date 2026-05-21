@@ -27,8 +27,6 @@ function somarInvestimentos(){
     
     tipos.forEach(function(item){
         total += item.valor;
-        console.log(item.valor);
-        console.log(total);
     });
     
     salvarLocalStorage();
@@ -121,10 +119,9 @@ async function getApi(){
         let data = await response.json();
         let cotacao = data.rates.BRL;
         
-        console.log("Cotação USD para BRL:", cotacao);
         valorDolar = cotacao;
     } catch(error){
-        console.log("Erro ao acessar API:", error);
+        alert("Não foi possível carregar a cotação do dólar");
     }
 };
 
