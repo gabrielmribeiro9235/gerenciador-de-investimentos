@@ -8,11 +8,11 @@ function lerLocalStore(){
     tipos = JSON.parse(localStorage.getItem("tipos"));
     total = JSON.parse(localStorage.getItem("total"));
 
-    if(tipos == null){
+    if(tipos === null){
         tipos = [];
     }
 
-    if(total == null) {
+    if(total === null) {
         total = 0;
     }
 };
@@ -34,8 +34,11 @@ function somarInvestimentos(){
 };
 
 function adicionarInvestimento(nome,valor){
+    if(!valor) return;
+
+    valor = valor.replace(",", ".");
     valor = Number(valor);
-    
+
     if(isNaN(valor) || valor <= 0){
         alert("Digite um valor númerico válido");
         return;
@@ -54,7 +57,7 @@ function adicionarInvestimento(nome,valor){
 };
 
 function removerInvestimento(indice){
-    const confirmacao = confirm(`Tem certeza que quer excluir o investimento \"${tipos[indice].nome}\"?`);
+    const confirmacao = confirm(`Tem certeza que quer excluir o investimento "${tipos[indice].nome}"?`);
     if(confirmacao) {
         tipos.splice(indice, 1);
         somarInvestimentos();
@@ -63,15 +66,16 @@ function removerInvestimento(indice){
 };
 
 function adicionarValor(indice){
-    let valor = prompt(`Digite o valor que quer adicionar ao investimento \"${tipos[indice].nome}\":`);
+    let valor = prompt(`Digite o valor que quer adicionar ao investimento "${tipos[indice].nome}":`);
 
     if(!valor) return;
 
-    if(isNaN(valor) || Number(valor) <= 0){
+    valor = valor.replace(",", ".");
+    valor = Number(valor);
+
+    if(isNaN(valor) || valor <= 0){
         alert("Digite um valor válido");
         return;
-    } else {
-        valor = Number(valor);
     }
     
     if(indice < 0 || indice >= tipos.length){
@@ -85,15 +89,16 @@ function adicionarValor(indice){
 };
 
 function retirarValor(indice){
-    let valor = prompt(`Digite o valor que quer retirar do investimento \"${tipos[indice].nome}\":`);
+    let valor = prompt(`Digite o valor que quer retirar do investimento "${tipos[indice].nome}":`);
 
     if(!valor) return;
 
-    if(isNaN(valor) || Number(valor) <= 0){
+    valor = valor.replace(",", ".");
+    valor = Number(valor);
+
+    if(isNaN(valor) || valor <= 0){
         alert("Digite um valor válido");
         return;
-    } else {
-        valor = Number(valor);
     }
     
     if(indice < 0 || indice >= tipos.length){
@@ -170,9 +175,9 @@ function configurarEventos(){
 function alteraTotal() {
     const p = document.querySelector(".card-total p");
     if(isDolar) {
-        p.innerHTML = `US$ ${(total / valorDolar).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        p.textContent = `US$ ${(total / valorDolar).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     } else {
-        p.innerHTML = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        p.textContent = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 };
 
