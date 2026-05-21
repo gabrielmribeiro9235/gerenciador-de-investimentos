@@ -42,7 +42,7 @@ function adicionarInvestimento(nome,valor){
     }
     
     for(let i = 0; i<tipos.length ; i++){
-        if(tipos[i].nome === nome){
+        if(tipos[i].nome.toLowerCase() === nome.toLowerCase()){
             alert("Esse investimento já foi adicionado");
             return;
         }
