@@ -54,9 +54,12 @@ function adicionarInvestimento(nome,valor){
 };
 
 function removerInvestimento(indice){
-    tipos.splice(indice, 1);
-    somarInvestimentos();
-    carregarInvestimentosNaTela();
+    const confirmacao = confirm(`Tem certeza que quer excluir o investimento \"${tipos[indice].nome}\"?`);
+    if(confirmacao) {
+        tipos.splice(indice, 1);
+        somarInvestimentos();
+        carregarInvestimentosNaTela();
+    }
 };
 
 function adicionarValor(indice){
