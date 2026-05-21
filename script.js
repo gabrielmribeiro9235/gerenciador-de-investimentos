@@ -165,7 +165,7 @@ function configurarEventos(){
 
 
 function alteraTotal() {
-    const p = document.querySelector("p");
+    const p = document.querySelector(".card-total p");
     if(isDolar) {
         p.innerHTML = `US$ ${(total / valorDolar).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     } else {
