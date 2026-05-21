@@ -14,6 +14,7 @@ body {
     zoom: 1.05;
 }
 
+
 header {
     height: 80px;
     display: flex;
@@ -31,7 +32,7 @@ header > nav {
     right: 40px;
     display: flex;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
     border: 2px solid rgb(0, 9, 128);
 }
 
@@ -43,6 +44,16 @@ header > nav {
     color: white;
     font-weight: 600;
     cursor: pointer;
+}
+
+.botao-reais {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.botao-dolares {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .moeda-ativa {
