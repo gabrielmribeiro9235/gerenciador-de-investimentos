@@ -13,7 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    zoom: 1.25;
+    zoom: 1.05;
 }
 
 header {
@@ -130,10 +130,20 @@ main {
 
 .adicionar-valor {
     color: rgb(0, 255, 0);
+    font-size: 18px;
+}
+
+.adicionar-valor:hover {
+    transform: scale(1.4);
 }
 
 .retirar-valor {
     color: red;
+    font-size: 18px;
+}
+
+.retirar-valor:hover {
+    transform: scale(1.4);
 }
 
 .card-tipos > div:nth-child(2) {
@@ -142,7 +152,7 @@ main {
     transform: translateX(-50%);
 }
 
-.card-tipos > div > h2 {
+.card-tipos > div > h3 {
     font-size: 18px;
     text-align: center;
 }
@@ -189,7 +199,7 @@ main {
 }
 
 .botao-novo-tipo:hover {
-    opacity: 85%;
+    background-color: rgb(32, 81, 188);
 }
 
 .botao-novo-tipo:active {

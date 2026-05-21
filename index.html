@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Gerenciador de Investimentos</title>
+
+    <meta 
+        name="description" 
+        content="Gerencie investimentos em diferentes categorias e acompanhe seus ativos em real e dólar."
+    >
+
+    <meta name="theme-color" content="#000000">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>Gerenciador de Investimentos</h1>
 
-        <nav>
-            <button class="botao-reais moeda-ativa">R$</button>
-            <button class="botao-dolares">US$</button>
+        <nav aria-label="Seleção de moeda">
+            <button class="botao-reais moeda-ativa" aria-label="Exibir valores em reais">R$</button>
+            <button class="botao-dolares" aria-label="Exibir valores em dólares">US$</button>
         </nav>
     </header>
 
@@ -24,7 +35,7 @@
             </div>            
         </section>
 
-        <section class="tipos">
+        <section class="tipos" aria-label="Lista de investimentos">
             <!-- aqui entrarão as divs igual a de cima com a classe card-tipos -->
         </section>
         <button class="botao-novo-tipo">Adicionar novo tipo de investimento</button>

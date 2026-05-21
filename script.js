@@ -188,7 +188,7 @@ function carregarInvestimentosNaTela() {
             const botaoAdicionarValor = document.createElement("button");
             const botaoRetirarValor = document.createElement("button");
             const div = document.createElement("div");
-            const h2 = document.createElement("h2");
+            const h3 = document.createElement("h3");
             const p = document.createElement("p");
             const botaoExcluir = document.createElement("button");
             
@@ -204,13 +204,13 @@ function carregarInvestimentosNaTela() {
             botaoExcluir.addEventListener("click", () => removerInvestimento(indice));
             botoesAdicionarRetirar.append(botaoAdicionarValor);
             botoesAdicionarRetirar.append(botaoRetirarValor);
-            h2.textContent = tipo.nome;
+            h3.textContent = tipo.nome;
             if(isDolar) {
                 p.textContent = `US$ ${(tipo.valor / valorDolar).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             } else {
                 p.textContent = `R$ ${tipo.valor.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             }
-            div.append(h2);
+            div.append(h3);
             div.append(p);
             botaoExcluir.innerHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
