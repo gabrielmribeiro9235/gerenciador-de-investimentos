@@ -66,7 +66,7 @@ function removerInvestimento(indice){
 };
 
 function adicionarValor(indice){
-    let valor = prompt(`Digite o valor que quer adicionar ao investimento "${tipos[indice].nome}":`);
+    let valor = prompt(`Digite o valor (em R$) que quer adicionar ao investimento "${tipos[indice].nome}":`);
 
     if(!valor) return;
 
@@ -89,7 +89,7 @@ function adicionarValor(indice){
 };
 
 function retirarValor(indice){
-    let valor = prompt(`Digite o valor que quer retirar do investimento "${tipos[indice].nome}":`);
+    let valor = prompt(`Digite o valor (em R$) que quer retirar do investimento "${tipos[indice].nome}":`);
 
     if(!valor) return;
 
@@ -142,7 +142,7 @@ function configurarEventos(){
         let nome = prompt("Nome do investimento:");
         if(nome === null) return;
         if(nome.trim() !== "") {
-            let valor = prompt("Valor do investimento");
+            let valor = prompt("Valor do investimento (em R$):");
             adicionarInvestimento(nome, valor);
         } else {
             alert("Digite um nome válido");
